@@ -7,8 +7,9 @@ library(ggplot2)
 library(ggridges)
 library(tidyr)
 library(data.table)
+library(stringr)
 
-pob <- load(file.path("H:/Mi unidad/garra/fundadoras/cruda188.RData"))
+pob <- load("cruda188.RData")
 pop <- get(pob[1])
 
 SP <- SimParam$new(pop) # ge
