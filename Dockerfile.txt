@@ -1,6 +1,3 @@
-
----
-
 ## ✅ `Dockerfile`
 
 Este archivo permite a Railway construir un entorno de R con todas las librerías necesarias para tu app:
