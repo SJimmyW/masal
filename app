@@ -7,6 +7,7 @@ library(ggplot2)
 library(ggridges)
 library(tidyr)
 library(data.table)
+library(stringr)
 
 pob <- load("cruda188.RData")
 pop <- get(pob[1])
