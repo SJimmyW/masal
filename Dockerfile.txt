@@ -1,36 +1,14 @@
-## ✅ `Dockerfile`
+# Usa una imagen base con R y Shiny preinstalados
+FROM rocker/shiny-verse:latest
 
-Este archivo permite a Railway construir un entorno de R con todas las librerías necesarias para tu app:
+# Instala paquetes adicionales necesarios
+RUN R -e "install.packages(c('shinydashboard', 'DT'))"
 
-```dockerfile
-# Imagen base con R y Shiny Server
-FROM rocker/shiny:latest
-
-# Instalar paquetes de sistema necesarios
-RUN apt-get update && apt-get install -y \
-    libcurl4-openssl-dev \
-    libssl-dev \
-    libxml2-dev \
-    libharfbuzz-dev \
-    libfribidi-dev \
-    libfreetype6-dev \
-    libpng-dev \
-    libtiff5-dev \
-    libjpeg-dev \
-    && rm -rf /var/lib/apt/lists/*
-
-# Instalar paquetes de R necesarios
-RUN R -e "install.packages(c('shiny', 'AlphaSimR', 'ggplot2', 'dplyr', 'tidyr', 'stringr'), repos='https://cloud.r-project.org')"
-
-# Copiar todos los archivos al contenedor
+# Copia tu aplicación al directorio del servidor Shiny
 COPY . /srv/shiny-server/
 
-# Permitir que todos los usuarios lean/escriban
-RUN chown -R shiny:shiny /srv/shiny-server
-
-# Exponer el puerto por defecto de Shiny
+# Expone el puerto en el que Shiny Server escucha
 EXPOSE 3838
 
-# Ejecutar Shiny Server
+# Inicia el servidor Shiny
 CMD ["/usr/bin/shiny-server"]
-
