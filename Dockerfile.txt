@@ -8,7 +8,7 @@ FROM rocker/shiny:4.4.3
 # 2) Instalamos aquí los paquetes de R que necesite tu app.
 #    Ajusta esta lista (o usa renv/packrat si ya los gestionas de otro modo).
 RUN R -e "install.packages(
-     c('shiny','dplyr','ggplot2', 'AlphaSimR', 'dplyr', 'ggridges','tidyr'.'stringr'),
+     c('shiny','dplyr','ggplot2', 'AlphaSimR', 'dplyr', 'ggridges','tidyr','stringr'),
      repos='https://cloud.r-project.org'
    )"
 
